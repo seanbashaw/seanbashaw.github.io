@@ -4,24 +4,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	  <title>Sean's Website</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+	  <title>Welcome!</title>
 
 </head>
 <body>
-	<h1>Welcome to my site.</h1>
-    <table class="table-borderless table">
-      <tbody>
-        <tr>
-          <th>🧍🏼‍♂️</th>
-          <th>Welcome to my site! I was gonna have a buncha fact of myself, but I decided a one dimensional wheel of facts was funner! Spin it below to learn stuff about me.</th>
-        </tr>
-        <tr>
-          <th>👨🏼‍💻</th>
-          <th>I am always open to discussing how I can consult and help you build your project or refactor an existing one to save money. Please email me at <a href="mailto:sean@seananigans.xyz">sean@seananigans.xyz</a> to get your business running!</th>
-        </tr>
-          <th>
-        </tbody>
-    </table>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Sean's Site</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Words</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Navbar text with an inline element
+    </span>
+  </div>
+</nav>
+    <p>Sean Bashaw is a programmer who grew up in the   Bay Area. He is widely considered as very cool. Currentlyhe is focused on using his Bachelor of Science in Software for good.</p>
+    <ul>
+      <li>Check out some of my games.</li>
+      <li>Read about my personal and professional achievements.</li>
+      <li>Reach out to me for new opportunities by contact or scheduling a time to talk.</li>
+    </ul>
     <h2>Wheel of facts!</h2>
     <button id="spinwheelbutton" type="button" cls="btn btn-primary" onclick="spinwheel();">Spin The Wheel!</button>
     <div id="wheel">
