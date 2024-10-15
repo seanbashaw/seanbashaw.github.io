@@ -4,13 +4,21 @@
 }
 
 body {
-	background-color: lightblue;
+	background-color: #87CEEB;
 }
 #footer {
 	background-color:red;
 		width:100%;
 }
-
+#balloons {
+	position: fixed;
+	float: right;
+	top: 0%;
+	z-index:-1;
+}
+svg {
+  pointer-events: all;
+}
 #footer ul{
 	display: inline;
 	list-style: none;
@@ -18,3 +26,15 @@ body {
 /*#footer ul li {
 	display: inline;
 }*/
+.cloud {
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	border: 1px solid #0000AA;
+	padding: 5px ;
+	max-width: 60%;
+	margin:10px auto;
+	z-index: 3;
+}
+.cloud h1 {
+	text-align: center;
+}
