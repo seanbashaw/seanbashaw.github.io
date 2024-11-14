@@ -1,5 +1,5 @@
 var wordwebs = document.getElementById("wordwebs");
-
+var connections = {};
 function createWord(x,y,phrase,show){
 	var hideS = /[0-9a-zA-Z]/gi;
 	//Wrap the input in a form to allow submission when pressing enter.
@@ -10,9 +10,9 @@ function createWord(x,y,phrase,show){
 	submit.setAttribute("style","display: none;");
 	word.setAttribute("type","text");
 	word.setAttribute("phrase",phrase);
-	word.classList.add('selected-word');
 	word.setAttribute("amtSlvd",0);
 	word.setAttribute("placeholder",show?phrase:phrase.replace(hideS,'*'));
+	word.setAttribute('size',phrase.length);
 	word.setAttribute("style","position:absolute; ");
 	word.style.left = x+"px";
 	word.style.top = y+"px";
