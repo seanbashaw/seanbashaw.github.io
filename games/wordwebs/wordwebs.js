@@ -56,8 +56,10 @@ function connectWords(a,b){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-createWord(50,10,"Gold",true);
-createWord(0,50,"Golden Gate Bridge",false);
-createWord(200,50,"Gold Rush",false);
-createWord(100,100,"California",false);
+createWord(50,10,"Movie Categories",true);
+createWord(0,50,"Comedy",false);
+createWord(100,50,"Horror",false);
+createWord(200,50,"Documentary",false);
+createWord(0,100,"Step Brothers",false);
+createWord(200,100,"Supersize Me",false);
 });
