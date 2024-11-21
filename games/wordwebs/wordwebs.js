@@ -56,10 +56,9 @@ function connectWords(a,b){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-createWord(50,10,"Movie Categories",true);
-createWord(0,50,"Comedy",false);
-createWord(100,50,"Horror",false);
-createWord(200,50,"Documentary",false);
-createWord(0,100,"Step Brothers",false);
-createWord(200,100,"Supersize Me",false);
+createWord(100,100,"Classic Arcade Games",true);
+createWord(150,60,"Tetris");
+createWord(30,60,"Pac-Man");
+createWord(30,140,"Super Mario Bros.")
+createWord(215,140,"Donkey Kong");
 });
