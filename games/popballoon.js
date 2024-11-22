@@ -4,18 +4,12 @@ var col =	getRandomColor();
 createBalloon(document.documentElement.scrollWidth*Math.random(),document.documentElement.scrollHeight*Math.random(), col,20,col);
 }
 function createBalloon(x,y,color,size,id){
-var balloon = document.createElementNS('http://www.w3.org/2000/svg','svg');
-var balloonmain = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+ var balloonmain = document.createElementNS('http://www.w3.org/2000/svg','polygon');
 var balloonknot = document.createElementNS("http://www.w3.org/2000/svg","ellipse");
 var balloonstring = document.createElementNS("http://www.w3.org/2000/svg","line");
 var balWidth = Math.abs(getPointAtDegree(0,size)[0]-getPointAtDegree(Math.PI,size)[0]);
 var balHeight = Math.abs(-(getPointAtDegree(Math.PI/2,size)[1]-getPointAtDegree(-Math.PI/2,size)[1]));
-balloonstring.setAttribute("stroke","black");
-balloonstring.setAttribute("x1",balWidth/2);
-balloonstring.setAttribute("x2",balWidth/2);
-balloonstring.setAttribute("y1",balHeight*.95);
-balloonstring.setAttribute("y2",balHeight*.95+100);
-balloon.appendChild(balloonstring);
+ balloon.appendChild(balloonstring);
 balloon.appendChild(balloonmain);
 balloon.appendChild(balloonknot);
 balloon.onclick = function() {balloon.remove();balloonList-=id};

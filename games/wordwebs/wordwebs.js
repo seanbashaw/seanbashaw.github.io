@@ -1,6 +1,23 @@
 var wordwebs = document.getElementById("wordwebs");
-var connections = {};
-function createWord(x,y,phrase,show){
+
+var connections = {"word1":{"x":100,"y":100,"word":"Classic Arcade Games","start":true,
+"connectedIDs":["word2","word3","word4","word5"]
+},
+"word2":{"x":150,"y":60,"word":"Tetris",
+"connectedIDs":["word1"]
+},
+"word3":{"x":30,"y":60,"word":"Pac-Man",
+"connectedIDs":["word1"]
+},
+"word4":{"x":30,"y":140,"word":"Super Mario Bros.",
+"connectedIDs":["word1"]
+},
+"word5":{"x":215,"y":140,"word":"Donkey Kong",
+"connectedIDs":["word1"]
+}
+};
+
+function createWord(x,y,phrase,show,wordid){
 	var hideS = /[0-9a-zA-Z]/gi;
 	//Wrap the input in a form to allow submission when pressing enter.
 	var form = document.createElement("form");
@@ -14,6 +31,7 @@ function createWord(x,y,phrase,show){
 	word.setAttribute("placeholder",show?phrase:phrase.replace(hideS,'*'));
 	word.setAttribute('size',phrase.length);
 	word.setAttribute("style","position:absolute; ");
+	word.id = wordid;
 	word.style.left = x+"px";
 	word.style.top = y+"px";
 	form.appendChild(word);
@@ -22,6 +40,7 @@ function createWord(x,y,phrase,show){
 	word.addEventListener('focusin',function(event){
 		console.log(event);
 		word.classList.add("selected-word");
+
 	});
 	word.addEventListener('focusout',function(event){
 			word.classList.remove("selected-word");
@@ -33,32 +52,22 @@ function createWord(x,y,phrase,show){
 			var phrase = word.getAttribute("phrase");
 			console.log(phrase);
 			word.setAttribute("placeholder",phrase.slice(0,word.value.length)+phrase.slice(word.value.length).replace(hideS,'*'));
-		}else{
-			//word.setAttribute("placeholder","nah");
 		}
 		word.value="";
 		form.reset();
 	};
 	return word;
 }
-function connectWords(a,b){
-	var cont = document.createElementNS('http://www.w3.org/2000/svg','svg');
-	var wordConnection = document.createElementNS("http://www.w3.org/2000/svg","line");
-	wordConnection.setAttribute("stroke","black");
-	//wordConnection.setAttribute("x1",a.getBoundingClientRect().width/2+a.getBoundingClientRect().left);
-	//wordConnection.setAttribute("x2",b.getBoundingClientRect().width/2+b.getBoundingClientRect().left);
-	wordConnection.setAttribute("x1",0);
-	wordConnection.setAttribute("x2",0);
-	wordConnection.setAttribute("y1",a.getBoundingClientRect().height/2+a.getBoundingClientRect().top);
-	wordConnection.setAttribute("y2",b.getBoundingClientRect().height/2+b.getBoundingClientRect().top);
-	cont.appendChild(wordConnection)
-	wordwebs.appendChild(cont);
-}
 
 document.addEventListener("DOMContentLoaded", function(){
-createWord(100,100,"Classic Arcade Games",true);
-createWord(150,60,"Tetris");
-createWord(30,60,"Pac-Man");
-createWord(30,140,"Super Mario Bros.")
-createWord(215,140,"Donkey Kong");
+	//This automates creation of our wordweb grids slightly
+var ids = Object.keys(connections);
+for (const a of ids){
+var con = connections[a];
+if (con.start){
+	createWord(con.x,con.y,con.word,con.start,a);
+}else{
+createWord(con.x,con.y,con.word,a);
+}
+}
 });
