@@ -1,18 +1,18 @@
 var wordwebs = document.getElementById("wordwebs");
 
-var connections = {"word1":{"x":100,"y":100,"word":"Classic Arcade Games","start":true,
+var connections = {"word1":{"x":100,"y":100,"word":"Classic Arcade Games","show":true,
 "connectedIDs":["word2","word3","word4","word5"]
 },
-"word2":{"x":150,"y":60,"word":"Tetris",
+"word2":{"x":150,"y":60,"word":"Tetris","show":false,
 "connectedIDs":["word1"]
 },
-"word3":{"x":30,"y":60,"word":"Pac-Man",
+"word3":{"x":30,"y":60,"word":"Pac-Man","show":false,
 "connectedIDs":["word1"]
 },
-"word4":{"x":30,"y":140,"word":"Super Mario Bros.",
+"word4":{"x":30,"y":140,"word":"Super Mario Bros.","show":false,
 "connectedIDs":["word1"]
 },
-"word5":{"x":215,"y":140,"word":"Donkey Kong",
+"word5":{"x":215,"y":140,"word":"Donkey Kong","show":false,
 "connectedIDs":["word1"]
 }
 };
@@ -65,7 +65,7 @@ var ids = Object.keys(connections);
 for (const a of ids){
 var con = connections[a];
 if (con.start){
-	createWord(con.x,con.y,con.word,con.start,a);
+	createWord(con.x,con.y,con.word,con.show,a);
 }else{
 createWord(con.x,con.y,con.word,a);
 }
