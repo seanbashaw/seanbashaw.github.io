@@ -67,7 +67,7 @@ var con = connections[a];
 if (con.start){
 	createWord(con.x,con.y,con.word,con.show,a);
 }else{
-createWord(con.x,con.y,con.word,a);
+createWord(con.x,con.y,con.word,con.start,a);
 }
 }
 });
