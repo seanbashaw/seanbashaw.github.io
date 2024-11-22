@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function(){
 var ids = Object.keys(connections);
 for (const a of ids){
 var con = connections[a];
-if (con.start){
-	createWord(con.x,con.y,con.word,con.show,a);
+if (con.show){
+	createWord(con.x,con.y,con.word,true,a);
 }else{
 createWord(con.x,con.y,con.word,con.show,a);
 }
