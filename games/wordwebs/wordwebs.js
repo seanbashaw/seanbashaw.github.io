@@ -38,7 +38,6 @@ function createWord(x,y,phrase,show,wordid){
 	form.appendChild(submit);
 	wordwebs.appendChild(form);
 	word.addEventListener('focusin',function(event){
-		console.log(a=word);
 		word.classList.add("selected-word");
 		//Wordlists
 		wordlist = connections[word.id]['connectedIDs']
@@ -56,10 +55,8 @@ function createWord(x,y,phrase,show,wordid){
 	});
 	form.onsubmit = function(event){
 		event.preventDefault();
-		console.log(word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase(),0));
 		if (word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase())==0){
 			var phrase = word.getAttribute("phrase");
-			console.log(phrase);
 			word.setAttribute("placeholder",phrase.slice(0,word.value.length)+phrase.slice(word.value.length).replace(hideS,'*'));
 		}
 		word.value="";
