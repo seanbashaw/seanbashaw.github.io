@@ -1,25 +1,32 @@
 var wordwebs = document.getElementById("wordwebs");
 
-var connections = {"word1":{"x":100,"y":100,"word":"Classic Arcade Games","show":true,
-"connectedIDs":["word2","word3","word4","word5"]
-},
-"word2":{"x":150,"y":60,"word":"Tetris","show":false,
-"connectedIDs":["word1"]
-},
-"word3":{"x":30,"y":60,"word":"Pac-Man","show":false,
-"connectedIDs":["word1"]
-},
-"word4":{"x":30,"y":140,"word":"Super Mario Bros.","show":false,
-"connectedIDs":["word1"]
-},
-"word5":{"x":215,"y":140,"word":"Donkey Kong","show":false,
-"connectedIDs":["word1"]
-}
+var connections = {
+	"word1":{"x":100,"y":100,"word":"Classic Arcade Games","show":true,
+	"connectedIDs":["word2","word3","word4","word5"]
+	},
+	"word2":{"x":150,"y":60,"word":"Tetris","show":false,
+	"connectedIDs":["word1"]
+	},
+	"word3":{"x":30,"y":60,"word":"Pac-Man","show":false,
+	"connectedIDs":["word1"]
+	},
+	"word4":{"x":30,"y":140,"word":"Super Mario Bros.","show":false,
+	"connectedIDs":["word1"]
+	},
+	"word5":{"x":215,"y":140,"word":"Donkey Kong","show":false,
+	"connectedIDs":["word1"]
+	}
 };
+function tryWord(wordID,event){
+	var word = document.getElementById(wordID);
+	if (word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase())==0){
+			var phrase = word.getAttribute("phrase");
+			word.setAttribute("placeholder",phrase.slice(0,word.value.length)+phrase.slice(word.value.length).replace(hideS,'*'));
+		}
+}
 
 function createWord(x,y,phrase,show,wordid){
 	var hideS = /[0-9a-zA-Z]/gi;
-	//Wrap the input in a form to allow submission when pressing enter.
 	var form = document.createElement("form");
 	var word = document.createElement("input");
 	var submit = document.createElement("input")
@@ -53,11 +60,21 @@ function createWord(x,y,phrase,show,wordid){
 			document.getElementById(w).classList.remove("connected-word")
 		}
 	});
-	form.onsubmit = function(event){
+	form.onsubmit = function(event,propogate=true){
 		event.preventDefault();
-		if (word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase())==0){
+		if (word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase())==0&&word.value.length>0){
 			var phrase = word.getAttribute("phrase");
 			word.setAttribute("placeholder",phrase.slice(0,word.value.length)+phrase.slice(word.value.length).replace(hideS,'*'));
+		}
+				//Wordlists
+		wordlist = connections[word.id]['connectedIDs']
+		if (propogate){
+		for (const w of wordlist){
+			var wa = document.getElementById(w).parentElement;
+			event.srcElement=wa;
+			wa[0].value=word.value;
+			wa.onsubmit(event,false);
+		}
 		}
 		word.value="";
 		form.reset();
