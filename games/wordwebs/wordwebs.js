@@ -1,21 +1,42 @@
 var wordwebs = document.getElementById("wordwebs");
 
 var connections = {
-	"word1":{"x":100,"y":100,"word":"Classic Arcade Games","show":true,
+	"word1":{"x":300,"y":200,"word":"Breakfast Foods","show":true,
 	"connectedIDs":["word2","word3","word4","word5"]
 	},
-	"word2":{"x":150,"y":60,"word":"Tetris","show":false,
+	"word2":{"x":250,"y":160,"word":"Bacon","show":false,
+	"connectedIDs":["word1","word10"]
+	},
+	"word3":{"x":250,"y":240,"word":"Eggs","show":false,
+	"connectedIDs":["word1","word6","word7","word9","word8"]
+	},
+	"word4":{"x":340,"y":160,"word":"French Toast","show":false,
+	"connectedIDs":["word1","word12"]
+	},
+	"word5":{"x":350,"y":240,"word":"Cereal","show":false,
 	"connectedIDs":["word1"]
 	},
-	"word3":{"x":30,"y":60,"word":"Pac-Man","show":false,
-	"connectedIDs":["word1"]
+	"word6":{"x":240,"y":300,"word":"Sunny Side Up","show":false,
+	"connectedIDs":["word3"]
 	},
-	"word4":{"x":30,"y":140,"word":"Super Mario Bros.","show":false,
-	"connectedIDs":["word1"]
+	"word7":{"x":120,"y":270,"word":"Over-Easy","show":false,
+	"connectedIDs":["word3"]
 	},
-	"word5":{"x":215,"y":140,"word":"Donkey Kong","show":false,
-	"connectedIDs":["word1"]
-	}
+	"word8":{"x":80,"y":230,"word":"Scrambled","show":false,
+	"connectedIDs":["word3"]
+	},
+	"word9":{"x":140,"y":190,"word":"Chickens","show":false,
+	"connectedIDs":["word3","word11"]
+	},
+	"word10":{"x":170,"y":110,"word":"Pigs","show":false,
+	"connectedIDs":["word2","word11"]
+	},
+	"word11":{"x":60,"y":150,"word":"Farm Animals","show":false,
+	"connectedIDs":["word9","word10"]
+	},
+	"word12":{"x":340,"y":120,"word":"Maple Syrup","show":false,
+	"connectedIDs":["word4"]
+	},
 };
 function tryWord(wordID,event){
 	var word = document.getElementById(wordID);
@@ -62,7 +83,7 @@ function createWord(x,y,phrase,show,wordid){
 	});
 	form.onsubmit = function(event,propogate=true){
 		event.preventDefault();
-		if (word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase())==0&&word.value.length>0){
+		if (word.getAttribute("phrase").toLowerCase().indexOf(word.value.toLowerCase())==0&&word.value.length>0&&!connections[word.id].show){
 			var phrase = word.getAttribute("phrase");
 			word.setAttribute("placeholder",phrase.slice(0,word.value.length)+phrase.slice(word.value.length).replace(hideS,'*'));
 		}
