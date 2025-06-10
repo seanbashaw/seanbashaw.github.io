@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Sean Bashaw - Software Engineer</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .cloud {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin: 20px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Inter', sans-serif;
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .display-4 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: #333333;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            color: #333333;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #000000;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #000000;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            margin: 4px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            color: #000000;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: 1px solid #000000;
+            position: relative;
+        }
+
+        .skill-tag:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .border-bottom {
+            border-bottom: 2px solid #000000 !important;
+        }
+
+        .text-muted {
+            color: #666666 !important;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul li:before {
+            content: "→";
+            color: #000000;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .company-name {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .date-range {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .cloud {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+
+        @keyframes flyAcross {
+            0% {
+                transform: translateX(-150vw) translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateX(-75vw) translateY(-100px) rotate(10deg);
+            }
+            50% {
+                transform: translateX(0vw) translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateX(75vw) translateY(-100px) rotate(-10deg);
+            }
+            100% {
+                transform: translateX(150vw) translateY(0) rotate(0deg);
+            }
+        }
+
+        .flying-computer {
+            display: none;
+        }
+
+        .jumpscare {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #f0f8ff;
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-out;
+            overflow: hidden;
+        }
+
+        .advice-container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-width: 80%;
+            animation: bounce 0.5s ease-out;
+        }
+
+        .dog-emoji {
+            font-size: 100px;
+            margin-bottom: 1rem;
+            animation: wag 1s infinite;
+        }
+
+        .advice-text {
+            font-size: 24px;
+            color: #333;
+            font-family: 'Comic Sans MS', cursive;
+            margin: 1rem 0;
+            line-height: 1.4;
+        }
+
+        .paw-prints {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .paw {
+            position: absolute;
+            font-size: 24px;
+            animation: fadeInOut 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0.3); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wag {
+            0% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg); }
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="jumpscare">
+        <div class="advice-container">
+            <div class="dog-emoji">🐕</div>
+            <div class="advice-text"></div>
+        </div>
+        <div class="paw-prints"></div>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="cloud">
+            <header class="text-center mb-5">
+                <h1 class="display-4">Sean Bashaw</h1>
+                <p class="lead">Full Stack Software Engineer</p>
+                <p class="contact-info">San Francisco | 650-561-5966 | seanbshw@gmail.com | seanbashaw.github.io</p>
+            </header>
+            
+            <section class="mb-5">
+                <h2 class="border-bottom pb-2">Professional Summary</h2>
+                <p>Results-driven software engineer with extensive experience in healthcare technology and startup environments. Proven track record of delivering scalable solutions and driving product development from concept to launch. Known for quick learning, problem-solving abilities, and bringing a positive, can-do attitude to every project.</p>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="border-bottom pb-2">Work Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Software Engineer</h3>
+                        <h4 class="company-name">Exact Sciences: Cologuard Team</h4>
+                        <p class="date-range">March 2023 - December 2023 | Remote</p>
+                        <ul>
+                            <li>Developed and maintained Java backend for web application supporting macro/plugins subsystem for lab testing</li>
+                            <li>Created flowcharts to help administration team understand complex code systems</li>
+                            <li>Collaborated with QA, administration, and product teams to meet objectives</li>
+                            <li>Utilized Spring, Gitlab, and JIRA for efficient development workflow</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Software Engineer</h3>
+                        <h4 class="company-name">Caresyntax</h4>
+                        <p class="date-range">June 2021 - October 2022 | Boston, MA</p>
+                        <ul>
+                            <li>Developed full-stack features for operating room scheduling and metrics tools</li>
+                            <li>Built REST API integration between multiple web applications</li>
+                            <li>Implemented new dashboard insights and data filtering systems</li>
+                            <li>Tech stack: Java (Groovy), React, SQL, AWS, Linux</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Quality Assurance Intern</h3>
+                        <h4 class="company-name">Nokia</h4>
+                        <p class="date-range">June 2019 - December 2019 | Mountain View, CA</p>
+                        <ul>
+                            <li>Developed automated testing systems for telemetry tools</li>
+                            <li>Created Excel-based bug tracking system with Visual Basic integration</li>
+                            <li>Worked with Python, C++, Linux, Docker, and Kubernetes</li>
+                            <li>Coordinated with international teams for server database setup</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="border-bottom pb-2">Technical Skills</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Programming Languages</h3>
+                        <div>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">TCL</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Tools & Technologies</h3>
+                        <div>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Git/GitLab</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="border-bottom pb-2">Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Bachelor of Science in Software Engineering</h3>
+                        <h4 class="company-name">Rochester Institute of Technology</h4>
+                        <p class="date-range">August 2015 - May 2021</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="border-bottom pb-2">Additional Experience</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="project-card">
+                            <h3>VeeTV Startup</h3>
+                            <p class="text-muted">January 2019 - June 2019</p>
+                            <ul>
+                                <li>Developed and maintained website for sign language video libraries</li>
+                                <li>Conducted user research and discovery interviews</li>
+                                <li>Secured $3,000 in funding through business competitions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="project-card">
+                            <h3>iD Tech Camp Counselor</h3>
+                            <p class="text-muted">June 2017 - August 2017</p>
+                            <ul>
+                                <li>Taught programming concepts to teenagers</li>
+                                <li>Led classes in Python, BASH, PHP, and C++</li>
+                                <li>Managed camp setup and operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="file.js"></script>
+    <script src="games/popballoon.js"></script>
+    <script>
+        const adviceByCategory = {
+            'Programming Languages': {
+                character: '🤖',
+                messages: [
+                    "Beep boop! Remember to comment your code - future you will thank you! 💻",
+                    "01001010! Take breaks to avoid burnout - even robots need maintenance! 🔧",
+                    "Error 404: Sleep not found! Make sure to get enough rest! 😴",
+                    "System.out.println('Stay curious and keep learning new languages!') 📚",
+                    "Debug tip: Sometimes the best solution is to step away and come back fresh! 🧠"
+                ]
+            },
+            'Tools & Technologies': {
+                character: '🛠️',
+                messages: [
+                    "Tools are only as good as the craftsman! Keep practicing! ⚒️",
+                    "Remember: The best tool is the one you know how to use well! 🔨",
+                    "Pro tip: Always read the documentation first! 📖",
+                    "Don't be afraid to try new tools - they might become your favorites! 🎯",
+                    "Keep your tools sharp and your skills sharper! ⚡"
+                ]
+            },
+            'Healthcare': {
+                character: '👨‍⚕️',
+                messages: [
+                    "Health tip: Stay hydrated and take regular breaks! 💧",
+                    "Remember: Your health is your greatest wealth! ❤️",
+                    "Pro tip: Regular exercise keeps both body and mind healthy! 🏃‍♂️",
+                    "Don't forget: Prevention is better than cure! 🛡️",
+                    "Stay healthy, stay happy! 🌟"
+                ]
+            },
+            'Communication': {
+                character: '🗣️',
+                messages: [
+                    "Remember: Clear communication is key to success! 🎯",
+                    "Pro tip: Listen more than you speak! 👂",
+                    "Don't forget: Body language speaks volumes! 👥",
+                    "Stay connected with your team! 🤝",
+                    "Keep your messages clear and concise! ✍️"
+                ]
+            },
+            'default': {
+                character: '🌟',
+                messages: [
+                    "You're doing great! Keep up the good work! 🌟",
+                    "Remember: Every expert was once a beginner! 🌱",
+                    "Stay curious and keep learning! 📚",
+                    "Don't forget to celebrate your progress! 🎉",
+                    "You've got this! 💪"
+                ]
+            }
+        };
+
+        function getAdviceForSkill(skillText) {
+            let category = 'default';
+            if (skillText.match(/python|java|javascript|c\+\+|sql|html|css|tcl/i)) {
+                category = 'Programming Languages';
+            } else if (skillText.match(/react|git|docker|kubernetes|aws|linux|ci\/cd/i)) {
+                category = 'Tools & Technologies';
+            } else if (skillText.match(/healthcare|medical|patient|clinical/i)) {
+                category = 'Healthcare';
+            } else if (skillText.match(/communication|presentation|writing|speaking/i)) {
+                category = 'Communication';
+            }
+
+            const categoryData = adviceByCategory[category];
+            const randomIndex = Math.floor(Math.random() * categoryData.messages.length);
+            return {
+                character: categoryData.character,
+                message: categoryData.messages[randomIndex]
+            };
+        }
+
+        function createPawPrint() {
+            const paw = document.createElement('div');
+            paw.className = 'paw';
+            paw.textContent = '✨';
+            paw.style.left = Math.random() * 100 + '%';
+            paw.style.top = Math.random() * 100 + '%';
+            paw.style.animationDelay = Math.random() * 2 + 's';
+            return paw;
+        }
+
+        document.querySelectorAll('.skill-tag').forEach(skill => {
+            let hoverTimeout;
+            skill.addEventListener('mouseenter', () => {
+                hoverTimeout = setTimeout(() => {
+                    const jumpscare = document.querySelector('.jumpscare');
+                    const adviceText = jumpscare.querySelector('.advice-text');
+                    const characterEmoji = jumpscare.querySelector('.dog-emoji');
+                    const pawPrints = jumpscare.querySelector('.paw-prints');
+                    
+                    pawPrints.innerHTML = '';
+                    for (let i = 0; i < 10; i++) {
+                        pawPrints.appendChild(createPawPrint());
+                    }
+                    
+                    const advice = getAdviceForSkill(skill.textContent);
+                    characterEmoji.textContent = advice.character;
+                    adviceText.textContent = advice.message;
+                    
+                    jumpscare.style.display = 'flex';
+                    setTimeout(() => {
+                        jumpscare.style.display = 'none';
+                    }, 3000);
+                }, 1000);
+            });
+            skill.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimeout);
+            });
+        });
+    </script>
+</body>
+</html> 
