@@ -9,6 +9,13 @@
     <title>Sean Bashaw - Software Engineer</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
             background-color: #ffffff;
             color: #000000;
             font-family: 'Inter', sans-serif;
@@ -178,87 +185,162 @@
         }
 
         .jumpscare {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #f0f8ff;
+            background: rgba(0, 0, 0, 0.9);
             z-index: 9999;
-            display: none;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.5s ease-out;
-            overflow: hidden;
-        }
-
-        .advice-container {
+            flex-direction: column;
+            color: white;
+            font-size: 2rem;
             text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            max-width: 80%;
-            animation: bounce 0.5s ease-out;
         }
 
         .dog-emoji {
-            font-size: 100px;
+            font-size: 5rem;
             margin-bottom: 1rem;
-            animation: wag 1s infinite;
+            animation: bounce 1s infinite;
         }
 
         .advice-text {
-            font-size: 24px;
-            color: #333;
-            font-family: 'Comic Sans MS', cursive;
-            margin: 1rem 0;
-            line-height: 1.4;
+            max-width: 80%;
+            margin: 0 auto;
         }
 
         .paw-prints {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            font-size: 2rem;
+            opacity: 0.5;
             pointer-events: none;
         }
 
-        .paw {
-            position: absolute;
-            font-size: 24px;
-            animation: fadeInOut 2s infinite;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         @keyframes bounce {
-            0% { transform: scale(0.3); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        @keyframes wag {
-            0% { transform: rotate(-10deg); }
-            50% { transform: rotate(10deg); }
-            100% { transform: rotate(-10deg); }
+        .resume-container {
+            max-width: 1200px;
+            width: 95%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { opacity: 0; }
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .resume-container {
+                width: 90%;
+                margin: 1rem auto;
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: 0;
+            }
+
+            .skill-tag {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .project-card {
+                margin: 1rem 0;
+            }
+
+            .project-card .card-body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .contact-info span {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .resume-container {
+                width: 95%;
+                margin: 0.5rem auto;
+                padding: 0.75rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .project-card {
+                margin: 0.75rem 0;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="jumpscare">
-        <div class="advice-container">
-            <div class="dog-emoji">🐕</div>
-            <div class="advice-text"></div>
-        </div>
+        <div class="dog-emoji">🐕</div>
+        <div class="advice-text"></div>
         <div class="paw-prints"></div>
     </div>
     
@@ -392,117 +474,20 @@
     <script src="file.js"></script>
     <script src="games/popballoon.js"></script>
     <script>
-        const adviceByCategory = {
-            'Programming Languages': {
-                character: '🤖',
-                messages: [
-                    "Beep boop! Remember to comment your code - future you will thank you! 💻",
-                    "01001010! Take breaks to avoid burnout - even robots need maintenance! 🔧",
-                    "Error 404: Sleep not found! Make sure to get enough rest! 😴",
-                    "System.out.println('Stay curious and keep learning new languages!') 📚",
-                    "Debug tip: Sometimes the best solution is to step away and come back fresh! 🧠"
-                ]
-            },
-            'Tools & Technologies': {
-                character: '🛠️',
-                messages: [
-                    "Tools are only as good as the craftsman! Keep practicing! ⚒️",
-                    "Remember: The best tool is the one you know how to use well! 🔨",
-                    "Pro tip: Always read the documentation first! 📖",
-                    "Don't be afraid to try new tools - they might become your favorites! 🎯",
-                    "Keep your tools sharp and your skills sharper! ⚡"
-                ]
-            },
-            'Healthcare': {
-                character: '👨‍⚕️',
-                messages: [
-                    "Health tip: Stay hydrated and take regular breaks! 💧",
-                    "Remember: Your health is your greatest wealth! ❤️",
-                    "Pro tip: Regular exercise keeps both body and mind healthy! 🏃‍♂️",
-                    "Don't forget: Prevention is better than cure! 🛡️",
-                    "Stay healthy, stay happy! 🌟"
-                ]
-            },
-            'Communication': {
-                character: '🗣️',
-                messages: [
-                    "Remember: Clear communication is key to success! 🎯",
-                    "Pro tip: Listen more than you speak! 👂",
-                    "Don't forget: Body language speaks volumes! 👥",
-                    "Stay connected with your team! 🤝",
-                    "Keep your messages clear and concise! ✍️"
-                ]
-            },
-            'default': {
-                character: '🌟',
-                messages: [
-                    "You're doing great! Keep up the good work! 🌟",
-                    "Remember: Every expert was once a beginner! 🌱",
-                    "Stay curious and keep learning! 📚",
-                    "Don't forget to celebrate your progress! 🎉",
-                    "You've got this! 💪"
-                ]
-            }
-        };
-
-        function getAdviceForSkill(skillText) {
-            let category = 'default';
-            if (skillText.match(/python|java|javascript|c\+\+|sql|html|css|tcl/i)) {
-                category = 'Programming Languages';
-            } else if (skillText.match(/react|git|docker|kubernetes|aws|linux|ci\/cd/i)) {
-                category = 'Tools & Technologies';
-            } else if (skillText.match(/healthcare|medical|patient|clinical/i)) {
-                category = 'Healthcare';
-            } else if (skillText.match(/communication|presentation|writing|speaking/i)) {
-                category = 'Communication';
-            }
-
-            const categoryData = adviceByCategory[category];
-            const randomIndex = Math.floor(Math.random() * categoryData.messages.length);
-            return {
-                character: categoryData.character,
-                message: categoryData.messages[randomIndex]
-            };
-        }
-
-        function createPawPrint() {
-            const paw = document.createElement('div');
-            paw.className = 'paw';
-            paw.textContent = '✨';
-            paw.style.left = Math.random() * 100 + '%';
-            paw.style.top = Math.random() * 100 + '%';
-            paw.style.animationDelay = Math.random() * 2 + 's';
-            return paw;
-        }
-
-        document.querySelectorAll('.skill-tag').forEach(skill => {
-            let hoverTimeout;
-            skill.addEventListener('mouseenter', () => {
-                hoverTimeout = setTimeout(() => {
-                    const jumpscare = document.querySelector('.jumpscare');
-                    const adviceText = jumpscare.querySelector('.advice-text');
-                    const characterEmoji = jumpscare.querySelector('.dog-emoji');
-                    const pawPrints = jumpscare.querySelector('.paw-prints');
-                    
-                    pawPrints.innerHTML = '';
-                    for (let i = 0; i < 10; i++) {
-                        pawPrints.appendChild(createPawPrint());
-                    }
-                    
-                    const advice = getAdviceForSkill(skill.textContent);
-                    characterEmoji.textContent = advice.character;
-                    adviceText.textContent = advice.message;
-                    
-                    jumpscare.style.display = 'flex';
-                    setTimeout(() => {
-                        jumpscare.style.display = 'none';
-                    }, 3000);
-                }, 1000);
-            });
-            skill.addEventListener('mouseleave', () => {
-                clearTimeout(hoverTimeout);
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize any remaining functionality
+            updateInventory();
+            showMessage('Welcome to my living resume!');
         });
+
+        function showMessage(text) {
+            const messageBox = document.getElementById('message-box');
+            messageBox.textContent = text;
+            messageBox.style.display = 'block';
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000);
+        }
     </script>
 </body>
 </html> 
