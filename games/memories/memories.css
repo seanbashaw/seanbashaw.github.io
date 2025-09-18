@@ -1,0 +1,28 @@
+platform-component {
+    position: absolute;
+    display: block;
+}
+
+crate-component {
+    background-color: #8B4513;
+    display: block;
+    background-size: cover;
+}
+
+game-component {
+    display: block;
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 20px auto;
+    background: #f0f0f0;
+}
+memory-component {
+    display: block;
+    position:absolute;
+    border-radius: 50%;
+    background-color: #8B4513;
+    background-size: cover;
+    background-position: center;
+    border: solid 1px #BBB;
+}
